@@ -1,0 +1,20 @@
+.card-margin {
+    margin-left: 15px;
+
+    .card-container {
+        display: flex;
+
+        .card-icon {
+            width: 30%;
+        }
+    
+        a, a:hover {
+            background-color: rgb(56, 56, 201);
+            width: 45px;
+        }
+    
+        p {
+            font-size: 15px;
+        }
+    }
+}

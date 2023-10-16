@@ -1,43 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { User } from 'src/app/Models/user';
+import { UserService } from 'src/app/Services/user.service';
 
 
 @Component({
   selector: 'users-table',
   templateUrl: './users-table.component.html',
-  styleUrls: ['./users-table.component.css']
+  styleUrls: ['./users-table.component.scss']
 })
-export class UsersTableComponent {
-  users = [
-    {
-      id: 1,
-      name: "Menna Mohamed",
-      imageURL:"https://icons-for-free.com/iconfiles/png/512/female+person+user+woman+young+icon-1320196266256009072.png",
-      email: "mennamohamed@gmail.com",
-      status: "Active",
-    },
-    {
-      id: 2,
-      name: "Mai Hesham",
-      email: "maihesham@gmail.com",
-      imageURL:"https://cdn-icons-png.flaticon.com/512/219/219969.png",
-      status: "Active",
-    },
-    {
-      id: 3,
-      name: "Manar Maher",
-      email: "manarmaher@gmail.com",
-      imageURL:"https://www.svgrepo.com/show/382095/female-avatar-girl-face-woman-user-4.svg",
-      status: "Inactive",
-    },
-    {
-      id: 4,
-      name: "Mohamed Khaled",
-      email: "mohamedkhaled@gmail.com",
-      imageURL:"https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
-      status: "Active",
-    },
-  ]
+
+export class UsersTableComponent implements OnInit {
+  users : User[] = [];
+  userService: UserService = inject(UserService)
   
+  ngOnInit(): void {
+    this.onGetUsers();
+  }
+
+  onGetUsers(){
+    this.userService.getUsers().subscribe((data: any) => {
+      this.users = data.users;
+    });
+  }
+
   editingUser: any = null;
   isEditing = false;
   
@@ -66,7 +51,6 @@ export class UsersTableComponent {
     }
   }
   
-
   // Delete user
   deleteUser(user : any) {
     if (confirm('Are you sure you want to delete this user?')) {

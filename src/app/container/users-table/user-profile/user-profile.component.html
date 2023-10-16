@@ -1,0 +1,24 @@
+<div class="user-detail-container">
+    <div class="user-details">
+        <div>
+            <img [src]="selectedUser.image" class="user-profile-image">
+        </div>
+        <div class="username">
+            <h1>
+                {{ selectedUser.firstName }}
+                {{ selectedUser.lastName }}
+            </h1>
+        </div>
+        <div class="user-fullName">
+            <p>
+                <b>Username:</b>
+                {{ selectedUser.username }}
+            </p>
+        </div>
+        <div class="user-info">
+            <div class="user-info-gender"><b>Gender: </b>{{ selectedUser.gender }}</div>
+            <div class="user-info-weight"><b>Weight: </b>{{ selectedUser.weight }}</div>
+            <div class="user-info-address"><b>Address: </b>{{ selectedUser.address.address }}</div>
+        </div>
+    </div>
+</div>
